@@ -5,10 +5,13 @@
 
 using namespace std;
 
-void sort(vector<string> &word) {
-    //길이 짧은 순, 길이 같을 때는 사전 순 정렬.
-
-
+bool compare(string a, string b) {
+    if (a.length() == b.length()) {     //두 단어의 길이가 같을 때, 사전순 정렬
+        return a < b;
+    }
+    else {                              //길이가 다르다면, 길이가 짧은 것이 앞으로 오도록..
+        return a.length() < b.length();
+    }
 }
 
 int main() {
@@ -22,7 +25,15 @@ int main() {
         word.push_back(tmp);
     }
 
-    sort(word);
+    sort(word.begin(), word.end(), compare);
+
+    cout << word[0] << "\n";
+
+    for (int i = 1; i < N; i++) {
+        if (word[i] != word[i - 1]) {
+            cout << word[i] << "\n";
+        }
+    }
 
 
     return 0;
